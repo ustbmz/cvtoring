@@ -166,11 +166,21 @@
   .guide { display: none; margin-top: 22px; border-radius: 20px; border: 1px solid var(--line); background: rgba(255,255,255,.75); padding: 22px 24px; }
   .guide.show { display: block; }
   .guide h3 { margin: 0 0 14px; font-size: 15px; }
-  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 0; padding: 0; list-style: none; counter-reset: step; }
-  .steps li { counter-increment: step; position: relative; padding-left: 34px; font-size: 12.5px; color: var(--muted); line-height: 1.65; }
-  .steps li::before { content: counter(step); position: absolute; left: 0; top: 0; width: 23px; height: 23px; border-radius: 8px; background: rgba(91,91,214,.1); color: var(--accent); font-weight: 750; font-size: 12px; display: grid; place-items: center; }
-  .steps b { color: var(--ink); font-weight: 650; }
-  @media (max-width: 700px) { .steps { grid-template-columns: 1fr; } }
+  .platforms { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 4px; }
+  .platform { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff; }
+  .platform-head { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 650; color: var(--ink); margin-bottom: 12px; }
+  .os-dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+  .os-dot.mac { background: var(--accent); }
+  .os-dot.win { background: var(--sky); }
+  .mini-steps { margin: 0; padding-left: 18px; color: var(--muted); font-size: 12px; line-height: 1.75; }
+  .mini-steps li { margin-bottom: 6px; }
+  .mini-steps b { color: var(--ink); font-weight: 650; }
+  .final-step { display: flex; gap: 10px; align-items: flex-start; margin-top: 14px; padding: 12px 14px; border-radius: 12px; background: rgba(91,91,214,.07); font-size: 12.5px; line-height: 1.7; color: var(--muted); }
+  .final-num { flex: none; width: 22px; height: 22px; border-radius: 8px; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 11px; font-weight: 750; }
+  .final-step b { color: var(--ink); }
+  .guide-tip { margin-top: 10px; font-size: 11.5px; color: var(--muted); line-height: 1.7; }
+  .guide-tip b { color: #b45309; }
+  @media (max-width: 700px) { .platforms { grid-template-columns: 1fr; } }
 
   footer { text-align: center; color: #94a3b8; font-size: 11.5px; margin-top: 26px; line-height: 1.8; }
   .hidden { display: none !important; }
@@ -299,11 +309,31 @@
 
   <section class="guide" id="guide">
     <h3>把铃声装进 iPhone</h3>
-    <ol class="steps">
-      <li>把下载的 <b>.m4r</b> 文件传到电脑（AirDrop / 数据线都可以）。</li>
-      <li>用数据线连接 iPhone：macOS 打开 <b>Finder</b>，Windows 打开 <b>Apple Devices / iTunes</b>，把 .m4r 拖进设备里的「铃声」区域。</li>
-      <li>同步完成后，在 iPhone 上进入 <b>设置 → 声音与触感 → 电话铃声</b>，选择刚导入的铃声。</li>
-    </ol>
+    <div class="platforms">
+      <div class="platform">
+        <div class="platform-head"><span class="os-dot mac"></span>macOS（Finder）</div>
+        <ol class="mini-steps">
+          <li>数据线连接 iPhone，解锁并点「信任此电脑」。</li>
+          <li>打开 <b>Finder</b>，在左侧边栏点你的 iPhone（如 ZPhone）。</li>
+          <li>新版 macOS <b>没有「铃声」标签</b>，直接把下载的 <b>.m4r</b> 文件<b>拖进右侧设备页面</b>，或拖到左侧的 iPhone 图标上。</li>
+          <li>等待同步进度条走完即可。</li>
+        </ol>
+      </div>
+      <div class="platform">
+        <div class="platform-head"><span class="os-dot win"></span>Windows</div>
+        <ol class="mini-steps">
+          <li>安装 <b>Apple Devices</b>（微软商店）或 <b>iTunes</b>。</li>
+          <li>数据线连接 iPhone，解锁并点「信任此电脑」。</li>
+          <li>打开设备页面，找到 <b>铃声 / Tones</b> 一栏，把 <b>.m4r</b> 文件拖进去。</li>
+          <li>点「同步」，等待完成。</li>
+        </ol>
+      </div>
+    </div>
+    <div class="final-step">
+      <span class="final-num">5</span>
+      <div><b>在 iPhone 上启用：</b>设置 → 声音与触感 → 电话铃声，在「自定义」里选刚导入的铃声。想设成某个联系人的专属铃声，可在通讯录里编辑该联系人 → 铃声。</div>
+    </div>
+    <div class="guide-tip">如果列表里没出现：确认文件后缀是 <b>.m4r</b>（不是 .m4r.m4a）、时长不超过 40 秒；再拔线重插、解锁手机重新同步一次。</div>
   </section>
 
   <footer>所有处理均在浏览器本地完成，文件不会离开你的设备 · 首次转换需加载约 31 MB 转换引擎</footer>
